@@ -28,16 +28,24 @@
     - app폴더 하단의 layout.tsx, page.tsx를 랜더링 해서 ('/')로 접속해 노출되는 화면을 설정
         - 기존의 페이지 라우터 사용시 app폴더 사용하지 않고, page/index.tsx 파일 및 _app.tsx파일 생성 후 사용
     - 각 폴더를 기준으로 url 설정
-    - app/layout.tsx는 전체 레이아웃 적용이며, 각 페이지 만의 레이아웃을 추가하고 싶다면 각 폴더 내에 layout.tsx파일을 만들어서 설정
-    - tmeplate.tsx는 페이지 이동 시 리렌더링을 하고 layout.tsx는 하지 않음
+    - layout.tsx
+        - app/layout.tsx는 전체 레이아웃 적용
+        - 각 페이지 만의 레이아웃을 추가하고 싶다면 각 폴더 내에 layout.tsx파일을 만들어서 설정
+        - 페이지 이동 시 리렌더링 하지 않음
+        - 같은 폴더 내에 template.tsx와 같이 사용할 수 없음
+    - tmeplate.tsx
+        - 페이지 이동 시 리렌더링
+        - 같은 폴더 내에 layout.tsx와 같이 사용할 수 없음
 - Dynamic Routes : [folder]
     - app router와 중복 될 경우 최후 순위로 적용
 - Route Groups : (folder)
     - 라우팅 주소에 영향을 주지는 않지만 (/(folder)/home -> /home) 그룹으로 묶을 수 있음
     - ex) 로그인 여부에 따라 보여지는 페이지가 다른 경우 (afterLogin)/(beforeLogin) 로 나누어서 관리
 - Parallel Routes : @folder
-    - 두 개의 페이지를 동시에 사용
+    - 두 개의 페이지를 동시에 노출
     - 같은 폴더 구조 안에 있어야 한다.
+- Intercepting Routes
+    - 주소가 다른 페이지를 동시에 노출
 - src/components
     - 각 페이지에서 필요한 요소들을 생성
 
@@ -46,8 +54,12 @@
     - Next.js 서버에서 동작
     - async와 같이 사용해 비동기 컴포넌트를 만들 수 있음
     - useState, useEffect와 같은 hook을 사용할 수 없음
+    - client component를 import 할 수 있음
 - client component
     - 브라우저에서 동작
     - useState, useEffect와 같은 hook을 사용할 수 있음
     - 파일 상단에 "use client"; 를 사용
+    - server component를 import 할 수 있으나, server component가 client component로 변경됨
+- not-found.tsx
+    - app routing으로 찾을 수 없는 주소 접근 시 노출
 
